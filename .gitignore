@@ -1,0 +1,9 @@
+*.swp
+*.swo
+.DS\_Store
+.DS_Store
+spec/spec_failing_examples.txt
+spec/specdoc_report.txt
+spec/spec_report.html
+**/.DS_Store/*
+.DS_Store/*
