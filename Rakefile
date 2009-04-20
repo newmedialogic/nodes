@@ -5,13 +5,12 @@ require 'rake/rdoctask'
 $LOAD_PATH << File.join(File.dirname(__FILE__), 'lib')
 require 'nodes'
 
-=begin
 desc 'Default: run unit tests.'
 task :default => [:clean, :test]
 
-desc 'Test the paperclip plugin.'
+desc 'Test nodes.'
 Rake::TestTask.new(:test) do |t|
-  t.libs << 'lib' << 'profile'
+  t.libs << 'lib'
   t.pattern = 'test/**/*_test.rb'
   t.verbose = true
 end
@@ -22,18 +21,13 @@ task :shell do |t|
   exec 'irb -I lib/ -I lib/paperclip -r rubygems -r active_record -r tempfile -r init'
 end
 
-desc 'Generate documentation for the paperclip plugin.'
+desc 'Generate documentation.'
 Rake::RDocTask.new(:rdoc) do |rdoc|
   rdoc.rdoc_dir = 'doc'
-  rdoc.title    = 'Paperclip'
+  rdoc.title    = 'Nodes'
   rdoc.options << '--line-numbers' << '--inline-source'
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
-end
-
-desc 'Update documentation on website'
-task :sync_docs => 'rdoc' do
-  `rsync -ave ssh doc/ dev@dev.thoughtbot.com:/home/dev/www/dev.thoughtbot.com/paperclip`
 end
 
 desc 'Clean up files.'
@@ -42,17 +36,16 @@ task :clean do |t|
   FileUtils.rm_rf "tmp"
   FileUtils.rm_rf "pkg"
   FileUtils.rm "test/debug.log" rescue nil
-  FileUtils.rm "test/paperclip.db" rescue nil
 end
 
 spec = Gem::Specification.new do |s| 
-  s.name              = "paperclip"
-  s.version           = Paperclip::VERSION
-  s.author            = "Jon Yurek"
-  s.email             = "jyurek@thoughtbot.com"
-  s.homepage          = "http://www.thoughtbot.com/projects/paperclip"
+  s.name              = "nodes"
+  s.version           = Nodes::VERSION
+  s.author            = "Aaron Longwell"
+  s.email             = "aaron@newmedialogic.com"
+  s.homepage          = "http://www.newmedialogic.com/plugins/nodes"
   s.platform          = Gem::Platform::RUBY
-  s.summary           = "File attachments as attributes for ActiveRecord"
+  s.summary           = "Beautifully simple CMS plugin for Rails."
   s.files             = FileList["README*",
                                  "LICENSE",
                                  "Rakefile",
@@ -60,12 +53,10 @@ spec = Gem::Specification.new do |s|
                                  "{generators,lib,tasks,test,shoulda_macros}/**/*"].to_a
   s.require_path      = "lib"
   s.test_files        = FileList["test/**/test_*.rb"].to_a
-  s.rubyforge_project = "paperclip"
+  # s.rubyforge_project = ""
   s.has_rdoc          = true
   s.extra_rdoc_files  = FileList["README*"].to_a
   s.rdoc_options << '--line-numbers' << '--inline-source'
-  s.requirements << "ImageMagick"
-  s.add_runtime_dependency 'right_aws'
   s.add_development_dependency 'thoughtbot-shoulda'
   s.add_development_dependency 'mocha'
 end
@@ -77,6 +68,3 @@ task :gemspec do
   end
 end
 
-
-
-=end
