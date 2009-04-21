@@ -1,0 +1,17 @@
+<h1>Nodes Plugin app/views/nodes/index.html.erb</h1>
+<table>
+  <thead>
+    <th>ID</th>
+    <th>Title</th>
+    <th>Date</th>
+  </thead>
+  <% @nodes.each do |node| %>
+  <tbody>
+    <tr>
+      <td><%= node.id %></td>
+      <td><%= node.title %></td>
+      <td><%= node.updated_at %></td>
+    </tr>
+  </tbody>
+<% end %>
+</table>
