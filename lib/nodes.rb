@@ -7,6 +7,24 @@ module Nodes
 
   VERSION = "0.1.0"
 
+  @@node_classes = []
+  mattr_accessor :node_classes
+
+  # Eager loading. 
+  def self.included(base) 
+    base.extend ClassMethods 
+    # base.send(:include, InstanceMethods) 
+
+
+    all_models = Dir.glob( File.join( RAILS_ROOT, 'app', 'models', '*.rb') ).map{|path| path[/.+\/(.+).rb/,1] }
+    ar_models = all_models.select{|m| m.classify.constantize < ActiveRecord::Base}.each do |m|
+      require m
+    end
+
+    #
+  end 
+
+
   module ClassMethods
    
     # +defines_nodes+ enhances the class its called on with CMS-related features. 
@@ -16,8 +34,8 @@ module Nodes
     # example, You might call defines_nodes :type_names => ['Article', 'Link', 'Album Review']
     # for a class called BlogPost.
     #
-    def defines_nodes(options = {})
-
+    def provides_nodes(options = {})
+      Nodes.node_classes << self.type.name unless Nodes.node_classes.include?(self.type.name)
     end
 
   end
