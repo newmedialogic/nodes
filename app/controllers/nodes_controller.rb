@@ -1,6 +1,10 @@
 class NodesController < ApplicationController
 
+  before_filter :assemble_blocks
+  helper :blocks
+
   prepend_view_path "app/pages"
+  append_view_path "app/blocks"
 
   def index
     @nodes = []
@@ -31,8 +35,6 @@ private
       break if path_parts.empty?
       path_parts.pop
     end
-
-    puts "Nothing existed."
   end
 
 
@@ -40,10 +42,16 @@ private
     "application"
   end
 
+
   def template_exists?(path)
     self.view_paths.find_template(path, response.template.template_format)
   rescue ActionView::MissingTemplate
     false
+  end
+
+
+  def assemble_blocks
+
   end
 
 end
