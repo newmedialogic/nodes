@@ -6,6 +6,7 @@ module BlocksHelper
   }
 
   def has_blocks_for?(name)
+    return false if params[:path].nil?
     if params[:path].empty?
       if BLOCKS.has_key?(name)
         return true

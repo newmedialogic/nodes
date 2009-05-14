@@ -7,3 +7,4 @@ spec/specdoc_report.txt
 spec/spec_report.html
 **/.DS_Store/*
 .DS_Store/*
+.specification
