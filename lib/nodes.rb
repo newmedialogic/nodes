@@ -46,6 +46,10 @@ module Nodes
       Nodes.node_classes << self.class.name unless Nodes.node_classes.include?(self.type.name)
     end
 
+
+    def provides_blocks(options = {})
+    end
+
   end
 
 end
@@ -55,6 +59,7 @@ if Object.const_defined?("ActiveRecord")
 end
 
 if Object.const_defined?("ActionView")
+  ActionView::Base.send(:include, NodesHelper)
   ActionView::Base.send(:include, BlocksHelper)
 end
 
