@@ -35,7 +35,7 @@ module Nodes
     # for a class called BlogPost.
     #
     def provides_nodes(options = {})
-      Nodes.node_classes << self.type.name unless Nodes.node_classes.include?(self.type.name)
+      Nodes.node_classes << self.class.name unless Nodes.node_classes.include?(self.type.name)
     end
 
   end
