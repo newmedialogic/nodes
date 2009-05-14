@@ -1,3 +1,6 @@
+require 'activesupport'
+require 'actionpack'
+
 # Nodes adds a minimalist content management system atop any
 # Rails model.
 # Author:: Aaron Longwell
@@ -6,9 +9,6 @@
 module Nodes
 
   VERSION = "0.1.0"
-
-  @@node_classes = []
-  mattr_accessor :node_classes
 
   # Eager loading. 
   def self.included(base) 
@@ -24,6 +24,14 @@ module Nodes
     #
   end 
 
+
+  def self.node_classes
+    @@node_classes ||= []
+  end
+
+  def self.node_classes=(node_classes)
+    @@node_classes = node_classes
+  end
 
   module ClassMethods
    
@@ -61,21 +69,23 @@ end
 # See http://giantrobots.thoughtbot.com/2009/4/23/tips-for-writing-your-own-rails-engine
 # for more information. You'll find the plugin's routes in config/nodes_routes.rb
 #
-class ActionController::Routing::RouteSet
+if Object.const_defined?("ActionController")
+  class ActionController::Routing::RouteSet
 
-  def load_routes_with_nodes!
-    lib_path = File.dirname(__FILE__)
-    nodes_routes = File.join(lib_path, *%w[.. config nodes_routes.rb])
+    def load_routes_with_nodes!
+      lib_path = File.dirname(__FILE__)
+      nodes_routes = File.join(lib_path, *%w[.. config nodes_routes.rb])
 
-    RAILS_DEFAULT_LOGGER.error(configuration_files.join("\n"))
+      RAILS_DEFAULT_LOGGER.error(configuration_files.join("\n"))
 
-    unless configuration_files.include?(nodes_routes)
-      add_configuration_file(nodes_routes)
+      unless configuration_files.include?(nodes_routes)
+        add_configuration_file(nodes_routes)
+      end
+      
+      load_routes_without_nodes!
     end
-    
-    load_routes_without_nodes!
+
+    alias_method_chain :load_routes!, :nodes
+
   end
-
-  alias_method_chain :load_routes!, :nodes
-
 end
