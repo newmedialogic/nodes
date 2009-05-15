@@ -11,35 +11,58 @@ class NodesController < ApplicationController
   end
 
   def show
-    @args = params[:path]
-    # render :text => rand(100) and return
-    render_static_path
+
+    path_parts = params[:path]
+
+    loop do
+      path = path_parts.join("/")
+
+      if template = template_for_path(path)
+        return render_static_path(template)
+      elsif @node = node_for_path(path)
+        return render_node(@node) 
+      else
+        raise ActiveRecord::RecordNotFoundException
+      end
+
+      path_parts.pop
+      break if path_parts.size < 1
+    end
+
   end
 
 private
 
-  def render_static_path
-    path_parts = params[:path]
+  def node_for_path(path)
+    
+  end
 
-    loop do
-      path = File.join(RAILS_ROOT, 'app', 'pages', path_parts)
-      rel_path = File.join(path_parts)
-      logger.error(path)
-      logger.error(rel_path)
-      logger.error '-' * 80
-      if template_exists?(rel_path) 
-        render :template => rel_path, :layout => determine_layout and return
-      elsif template_exists?("#{rel_path}/index")
-        render :template => "#{rel_path}/index" and return
-      end
-      break if path_parts.empty?
-      path_parts.pop
-    end
+
+  # This method should be moved into a Mixin that's included into ActionController::Base
+  # and ActionView::Base (copy the methods used by render() in both cases).
+  #
+  def render_node
+    
+  end
+
+
+  def render_static_path(path)
+    render :template => path, :layout => determine_layout and return
   end
 
 
   def determine_layout
     "application"
+  end
+
+
+  def template_for_path(path)
+    
+    index_path = [path, 'index'].join('/')
+
+    return path       if template_exists?(path)
+    return index_path if template_exists?(index_path)
+    return nil
   end
 
 
