@@ -6,6 +6,9 @@ class CreateNodeAbstracts < ActiveRecord::Migration
       # Polymorphic associations support
       t.column :node_id,   :integer, :null => false
       t.column :node_type, :string
+      
+      # URL path finder support
+      t.column :path,      :string
 
       # Content caching and convenience fields
       # these duplicate data that can be found either in the Node
@@ -16,6 +19,12 @@ class CreateNodeAbstracts < ActiveRecord::Migration
       t.column :content,   :text
 
     end
+
+
+    add_index :node_abstracts, :node_id
+    add_index :node_abstracts, [:node_type, :node_id]
+    add_index :node_abstracts, :path
+
   end
 
   def self.down

@@ -20,7 +20,7 @@ class NodesController < ApplicationController
       if template = template_for_path(path)
         return render_static_path(template)
       elsif @node = node_for_path(path)
-        return render_node(@node) 
+        return render_node(@node)
       else
         raise ActiveRecord::RecordNotFoundException
       end
@@ -34,15 +34,18 @@ class NodesController < ApplicationController
 private
 
   def node_for_path(path)
-    
+    @abstract = NodeAbstract.find_by_path(path)
+    return nil if @abstract.nil?
+    return @abstract.node
   end
 
 
   # This method should be moved into a Mixin that's included into ActionController::Base
   # and ActionView::Base (copy the methods used by render() in both cases).
   #
-  def render_node
-    
+  def render_node(node)
+    @page = node
+    render :template => "/#{node.class.name.pluralize.downcase}/show"
   end
 
 
