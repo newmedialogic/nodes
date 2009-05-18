@@ -1,0 +1,6 @@
+Generates a minimal model and controller for managing a single content type
+(Post, Announcement, Page, etc) in the Nodes content management system. The
+model and controller have virtually no code in them. The model contains a
+single macro method to register it as a Nodes model. The controller just
+inherits from a Nodes controller class that implements the basic CMS features.
+

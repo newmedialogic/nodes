@@ -6,9 +6,16 @@ class NodesController < ApplicationController
   prepend_view_path "app/pages"
   append_view_path "app/blocks"
 
+
+  def new
+  
+  end
+
+
   def index
     @nodes = []
   end
+
 
   def show
 
