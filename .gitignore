@@ -8,3 +8,4 @@ spec/spec_report.html
 **/.DS_Store/*
 .DS_Store/*
 .specification
+tmp

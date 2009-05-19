@@ -1,8 +1,8 @@
-require 'test_helper'
+require File.dirname(__FILE__) + '/../helper.rb'
 
-class NodeAbstractTest < ActiveSupport::TestCase
+class NodeAbstractTest < Test::Unit::TestCase
 
-  test 'the truth' do
+  def test_truth
     assert true
   end
 

@@ -1,6 +1,3 @@
-require 'activesupport'
-require 'actionpack'
-
 # Nodes adds a minimalist content management system atop any
 # Rails model.
 # Author:: Aaron Longwell
