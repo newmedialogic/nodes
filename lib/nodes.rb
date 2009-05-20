@@ -51,6 +51,9 @@ module Nodes
 
 end
 
+
+require 'nodes/manages_nodes'
+
 if Object.const_defined?("ActiveRecord")
   ActiveRecord::Base.send(:include, Nodes)
 end
@@ -58,6 +61,11 @@ end
 if Object.const_defined?("ActionView")
   ActionView::Base.send(:include, NodesHelper)
   ActionView::Base.send(:include, BlocksHelper)
+end
+
+
+if Object.const_defined?("ActionController")
+  ActionController::Base.extend Nodes::ManagesNodes
 end
 
 
