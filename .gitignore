@@ -9,3 +9,4 @@ spec/spec_report.html
 .DS_Store/*
 .specification
 tmp
+test/rails_root/db/migrate/*node_abstracts.rb
