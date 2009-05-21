@@ -4,9 +4,8 @@ require 'test_help'
 
 $: << File.expand_path(File.dirname(__FILE__) + '/..')
 
-gem 'thoughtbot-factory_girl'
 
-
+#gem 'thoughtbot-factory_girl'
 require File.join(File.dirname(__FILE__), '..', 'shoulda_macros', 'nodes')
 
 class ActiveSupport::TestCase
