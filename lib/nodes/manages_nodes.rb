@@ -17,3 +17,8 @@ module Nodes
 
   end
 end
+
+
+if Object.const_defined?("ActionController")
+  ActionController::Base.extend Nodes::ManagesNodes
+end
