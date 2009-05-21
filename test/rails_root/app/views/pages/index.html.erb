@@ -1,0 +1,21 @@
+<h1>Pages</h1>
+<ul class="Links">
+  <li><%= link_to "New Page", new_page_path %></li>
+</ul>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Body</th>
+  </tr>
+  <% @pages.each do |page| %>
+    <tr>
+      <td><%=h page.title %></td>
+      <td><%=h page.body %></td>
+      <td><%= link_to "Show", page %></td>
+      <td><%= link_to "Edit", edit_page_path(page) %></td>
+      <td><%= link_to "Delete", page, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+

@@ -1,0 +1,14 @@
+<% form_for @page do |f| %>
+  <%= f.error_messages %>
+  <ul>
+    <li>
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+    </li>
+    <li>
+      <%= f.label :body %>
+      <%= f.text_area :body %>
+    </li>
+    <li class="buttons"><%= f.submit "Submit" %></li>
+  </ul>
+<% end %>
