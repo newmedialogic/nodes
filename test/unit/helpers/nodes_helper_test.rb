@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../../helper.rb'
+require File.dirname(__FILE__) + '/../../test_helper.rb'
 include NodesHelper
 
 class NodesHelperTest < Test::Unit::TestCase
