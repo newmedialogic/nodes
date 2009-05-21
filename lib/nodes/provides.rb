@@ -6,11 +6,13 @@ module Nodes
       all_models.each do |m|
         require m
       end
+
     end
 
 
     def provides_nodes(options = {}, &block)
       Nodes.node_classes << self.class unless Nodes.node_classes.include?(self.class)
+
     end
 
 
@@ -24,9 +26,4 @@ end
 
 if Object.const_defined?("ActiveRecord")
   ActiveRecord::Base.extend Nodes::Provides
-end
-
-if Object.const_defined?("ActionView")
-  ActionView::Base.send(:include, NodesHelper)
-  ActionView::Base.send(:include, BlocksHelper)
 end
