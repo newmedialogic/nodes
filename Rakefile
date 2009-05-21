@@ -25,8 +25,10 @@ namespace :generator do
     end
     
     require 'fileutils'
-    FileUtils.rm("test/rails_root/db/test.sqlite3")
-    # FileUtils.cp("test/rails_root/db/test_original.sqlite3", "test/rails_root/db/test.sqlite3")
+    test_db = "test/rails_root/db/test.sqlite3"
+    test_db_template = "test/rails_root/db/test_original.sqlite3"
+    FileUtils.rm(test_db) if File.exist?(test_db)
+    FileUtils.cp(test_db_template, test_db)
   end
 
   desc "Run all generators for the rails_root test application"
