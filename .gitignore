@@ -12,3 +12,4 @@ tmp
 test/rails_root/db/migrate/*node_abstracts.rb
 test/rails_root/db/schema.rb
 test/rails_root/db/development.sqlite3
+test/rails_root/log/*.log
