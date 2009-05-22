@@ -18,9 +18,6 @@ module Nodes
 end
 
 
-nodes_root = File.expand_path(File.dirname(__FILE__) + '/..')
-
-# require File.join(nodes_root, 'app/helpers/nodes_helper')
 require 'nodes/manages_nodes'
 require 'nodes/provides'
 

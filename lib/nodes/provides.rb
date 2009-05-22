@@ -2,15 +2,13 @@ module Nodes
   module Provides
 
     def self.extended(base)
-      all_models = Dir.glob( File.join(RAILS_ROOT, 'app', 'models', '*.rb')).map { |path| path[/.+\/(.+)\.rb/, 1] }
-      all_models.each do |m|
-        require m
-      end
-
     end
 
 
     def provides_nodes(options = {}, &block)
+
+      has_one :node_abstract, :as => :node, :dependent => :destroy
+
       Nodes.node_classes << self.class unless Nodes.node_classes.include?(self.class)
 
     end
