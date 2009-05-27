@@ -19,7 +19,7 @@ module Nodes
 
     module InstanceMethods
       def path
-        "TEST"
+        "EIGHTEEN" 
       end
     end
 
@@ -27,6 +27,4 @@ module Nodes
 end
 
 
-if Object.const_defined?("ActiveRecord")
-  ActiveRecord::Base.extend Nodes::Provides::ClassMethods
-end
+ActiveRecord::Base.extend Nodes::Provides::ClassMethods

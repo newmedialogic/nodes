@@ -18,8 +18,8 @@ module Nodes
 end
 
 
-require 'nodes/manages_nodes'
-require 'nodes/provides'
+load 'nodes/manages_nodes.rb'
+load 'nodes/provides.rb'
 
 
 # As of early May 2009, the default behaviors for Rails Engines
@@ -36,12 +36,11 @@ class ActionController::Routing::RouteSet
 
   def load_routes_with_nodes!
     lib_path = File.dirname(__FILE__)
-    nodes_routes = File.join(lib_path, *%w[.. config nodes_routes.rb])
+    new_routes = File.expand_path(File.join(lib_path, *%w[.. config nodes_routes.rb]))
 
-    RAILS_DEFAULT_LOGGER.error(configuration_files.join("\n"))
-
-    unless configuration_files.include?(nodes_routes)
-      add_configuration_file(nodes_routes)
+    unless configuration_files.include?(new_routes)
+      add_configuration_file(new_routes)
+      # raise configuration_files.join("")
     end
     
     load_routes_without_nodes!
@@ -50,3 +49,17 @@ class ActionController::Routing::RouteSet
   alias_method_chain :load_routes!, :nodes
 
 end
+
+
+
+# Make all paths of this plugins code not "load-once" style
+# paths (meaning their code is reloaded on every request in
+# development mode).
+#
+['lib', 'app/models', 'app/controllers', 'app/helpers', 'app/metal'].each do |dir|
+  root = File.expand_path(File.join(File.dirname(__FILE__), '..'))
+  path = File.join(root, dir)
+  ActiveSupport::Dependencies.load_paths << path unless ActiveSupport::Dependencies.load_paths.include?(path)
+  ActiveSupport::Dependencies.load_once_paths.delete(path)
+end
+

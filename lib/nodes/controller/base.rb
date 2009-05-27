@@ -1,4 +1,4 @@
-require 'nodes/controller/default/actions'
+load 'nodes/controller/default/actions.rb'
 
 module Nodes::Controller::Base
 
