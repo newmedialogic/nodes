@@ -1,21 +1,26 @@
 module Nodes
   module Provides
 
-    def self.extended(base)
+    module ClassMethods
+
+      def provides_nodes(options = {}, &block)
+        has_one :node_abstract, :as => :node, :dependent => :destroy
+        send :include, InstanceMethods
+        Nodes.node_classes << self.class unless Nodes.node_classes.include?(self.class)
+      end
+
+
+      def provides_blocks(options = {}, &block)
+        Nodes.block_classes << self.class unless Nodes.node_classes.include?(self.class)
+      end
+
     end
 
 
-    def provides_nodes(options = {}, &block)
-
-      has_one :node_abstract, :as => :node, :dependent => :destroy
-
-      Nodes.node_classes << self.class unless Nodes.node_classes.include?(self.class)
-
-    end
-
-
-    def provides_blocks(options = {}, &block)
-      Nodes.block_classes << self.class unless Nodes.node_classes.include?(self.class)
+    module InstanceMethods
+      def path
+        "TEST"
+      end
     end
 
   end
@@ -23,5 +28,5 @@ end
 
 
 if Object.const_defined?("ActiveRecord")
-  ActiveRecord::Base.extend Nodes::Provides
+  ActiveRecord::Base.extend Nodes::Provides::ClassMethods
 end
