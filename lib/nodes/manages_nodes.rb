@@ -7,13 +7,14 @@ module Nodes
 
     def manages_nodes(options = {}, &block)
       include Nodes::Controller::Base
-      helper NodesHelper
       add_helpers
     end
 
   private
   
     def add_helpers
+      helper NodesHelper
+      helper BlocksHelper
       helper_method(:current_node)
     end
 

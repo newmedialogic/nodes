@@ -1,17 +1,38 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
+
 class ProvidesTest < Test::Unit::TestCase
 
   context "Added methods" do
 
-    setup { @page = Page.new }
+    setup do
+      @node = Page.new
+      @node.title = "Fake name"
+      @node.body  = "Lorem ipsum body"
+    end
 
     should "respond to path" do
-      assert_respond_to @page, :path
+      assert_respond_to @node, :path
+    end
+
+    should "respond to node_title" do
+      assert_respond_to @node, :node_title
+    end
+
+    should "have the correct node_title" do
+      assert_equal "Fake name", @node.node_title
+    end
+
+    should "respond to node_body" do
+      assert_respond_to @node, :node_body
+    end
+
+    should "have the correct node_body" do
+      assert_equal "Lorem ipsum body", @node.node_body
     end
 
     should "automatically associate node_abstract" do
-      assert_respond_to @page, :node_abstract
+      assert_respond_to @node, :node_abstract
     end
 
   end
