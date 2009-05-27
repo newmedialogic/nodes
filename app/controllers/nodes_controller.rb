@@ -1,5 +1,3 @@
-load 'nodes.rb'
-
 class NodesController < ApplicationController
 
   before_filter :assemble_blocks

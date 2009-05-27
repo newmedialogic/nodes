@@ -10,7 +10,7 @@ module Nodes
         add_model_associations
 
         builder = Nodes::Provides::Builder.new(self)
-        builder.instance_eval(&block)
+        builder.instance_eval(&block) if block_given?
         builder.apply
       end
 
