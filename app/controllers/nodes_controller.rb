@@ -7,35 +7,16 @@ class NodesController < ApplicationController
 
   prepend_view_path "app/pages"
   append_view_path "app/blocks"
-
-
-  def new
-    @node_type = node_type
-    @node = @node_type.new 
-    render 'new' and return
-  end
-
-
-  def create
-    @node_type = params[:node_type].classify.constantize
-    @node = @node_type.new(params[:node])
-    if @node.save
-      redirect_to @node
-    else
-      render :new
-    end
-  end
-
+  
 
   def index
     @node_type = node_type
-    @nodes = @node_type.all
+    @nodes = [] 
     render 'index' and return
   end
 
 
   def show
-
     path_parts = params[:path].dup
 
     loop do
@@ -54,7 +35,6 @@ class NodesController < ApplicationController
       path_parts.pop
       break if path_parts.size < 1
     end
-
   end
 
 private

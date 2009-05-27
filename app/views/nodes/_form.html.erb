@@ -1,4 +1,4 @@
-<% form_for @node, :url => nodes_path do |f| %>
+<% form_for current_node do |f| %>
   <%= f.error_messages %>
   <ul>
     <li>
@@ -8,10 +8,6 @@
     <li>
       <%= f.label :body %>
       <%= f.text_area :body %>
-    </li>
-    <li>
-      <%= f.label :path %>
-      <%= f.text_field :path %>
     </li>
     <li class="buttons">
       <%= hidden_field_tag :node_type, 'Page' %>

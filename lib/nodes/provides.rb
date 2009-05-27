@@ -21,6 +21,10 @@ module Nodes
       def path
         "EIGHTEEN" 
       end
+
+      def path=
+      end
+
     end
 
   end
