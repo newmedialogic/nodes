@@ -1,4 +1,5 @@
 tinyMCE.init({
   theme : "advanced",
-  mode : "textareas",
+  mode : "specific_textareas",
+  editor_selector: /nodesWYSIWYG/
 });
