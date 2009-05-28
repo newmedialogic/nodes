@@ -9,10 +9,12 @@
       <%= n.label :body %>
       <%= n.text_area :body, :class => 'nodesWYSIWYG' %>
     </li>
+    <% n.fields_for(:node_abstract) do |na| %>
     <li>
-      <%= n.label :path %>
-      <%= n.text_field :path %>
+      <%= na.label :path %>
+      <%= na.text_field :path %>
     </li>
+    <% end %> 
     <li class="buttons">
       <%= n.submit "Submit" %>
     </li>

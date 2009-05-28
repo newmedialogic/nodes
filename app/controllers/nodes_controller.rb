@@ -20,12 +20,10 @@ class NodesController < ApplicationController
     loop do
       path = path_parts.join("/")
 
-      if node_management_path?(path)
-        return handle_node_management_request()
-      elsif template = template_for_path(path)
+      if template = template_for_path(path)
         return render_static_path(template)
       elsif @node = node_for_path(path)
-        return render_node(@node)
+        return render_node
       else
         raise ActiveRecord::RecordNotFound
       end
@@ -47,21 +45,6 @@ private
   end
 
 
-  def node_type
-    return nil if params[:path].nil? or params[:path].empty?
-    params[:path].first.singularize.classify.constantize
-  end
-
-
-  def node_management_path?(path)
-
-    if path =~ /pages/
-      return true
-    else
-      return false
-    end
-  end
-  
   def node_for_path(path)
     @abstract = NodeAbstract.find_by_path(path)
     return nil if @abstract.nil?
@@ -72,9 +55,10 @@ private
   # This method should be moved into a Mixin that's included into ActionController::Base
   # and ActionView::Base (copy the methods used by render() in both cases).
   #
-  def render_node(node)
-    @page = node
-    render :template => "/#{node.class.name.pluralize.downcase}/show"
+  def render_node
+    render :template => "#{@node.class.name.pluralize.downcase}/show"
+  rescue ActionView::MissingTemplate
+    render :template => "nodes/show"
   end
 
 

@@ -25,6 +25,7 @@ module Nodes
 
       def add_model_associations
         has_one :node_abstract, :as => :node, :dependent => :destroy
+        accepts_nested_attributes_for :node_abstract
         delegate :path, :to => :node_abstract
       end
 
@@ -63,7 +64,7 @@ module Nodes
       
       def update_node_abstract
         self.node_abstract.title = self.node_title
-        self.node_abstract.body =  self.node_body
+        self.node_abstract.content =  self.node_body
       end
 
 

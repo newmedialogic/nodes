@@ -19,6 +19,7 @@ module Nodes
         def create
           build_node
           instantiate_node
+          current_node.attributes = object_parameters
           if current_node.save
             save_succeeded!
             redirect_to current_node and return
@@ -56,15 +57,9 @@ module Nodes
         # PUT /things/12
         def update
           instantiate_node
+          current_node.attributes = object_parameters
 
-          begin
-            result = current_node.update_attributes object_parameters
-          rescue ActiveRecord::StaleObjectError
-            current_node.reload
-            result = false
-          end
-
-          if result
+          if current_node.save
             save_succeeded!
             redirect_to current_node
           else
