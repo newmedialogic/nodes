@@ -1,17 +1,20 @@
-<% form_for(current_node, :html => { :class => 'NodesForm' }) do |f| %>
-  <%= f.error_messages %>
+<% form_for(current_node, :html => { :class => 'NodesForm' }) do |n| %>
+  <%= n.error_messages %>
   <ul>
     <li>
-      <%= f.label :title %>
-      <%= f.text_field :title %>
+      <%= n.label :title %>
+      <%= n.text_field :title %>
     </li>
     <li>
-      <%= f.label :body %>
-      <%= f.text_area :body, :class => 'nodesWYSIWYG' %>
+      <%= n.label :body %>
+      <%= n.text_area :body, :class => 'nodesWYSIWYG' %>
+    </li>
+    <li>
+      <%= n.label :path %>
+      <%= n.text_field :path %>
     </li>
     <li class="buttons">
-      <%= hidden_field_tag :node_type, 'Page' %>
-      <%= f.submit "Submit" %>
+      <%= n.submit "Submit" %>
     </li>
   </ul>
 <% end %>

@@ -1,10 +1,23 @@
 require File.dirname(__FILE__) + '/../../test_helper' 
 include NodesHelper
 
-class NodesHelperTest < Test::Unit::TestCase
+class NodesHelperTest < ActionView::TestCase 
 
-  def test_nodes_head
-    assert_match /Nodes Header Code/, nodes_head()
+  context "Nodes Head" do
+
+    setup do
+      @html = nodes_head()
+    end
+
+    should "include nodes.css" do
+      assert_match /nodes\.css/, @html
+    end
+
+    should "include nodes.js" do
+      assert_match /nodes\.js/, @html
+    end
+
   end
+
 
 end

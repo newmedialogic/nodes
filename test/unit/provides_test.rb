@@ -3,7 +3,16 @@ require File.dirname(__FILE__) + '/../test_helper'
 
 class ProvidesTest < Test::Unit::TestCase
 
-  context "Added methods" do
+  context "NodeAbstract association" do
+
+    should "automatically instantiate a node_abstract" do
+      assert_not_nil Page.new.node_abstract
+    end
+
+  end
+
+
+  context "Page node provides (all defaults)" do
 
     setup do
       @node = Page.new
