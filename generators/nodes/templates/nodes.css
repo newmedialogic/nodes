@@ -1,0 +1,23 @@
+form.NodesForm ul {
+  margin :0;
+  padding: 0;
+  list-style-type: none;
+}
+
+form.NodesForm li {
+  display: block;
+  margin: 0;
+  padding: 6px 5px 9px 9px;
+  list-style-type: none;
+  margin: 0;
+}
+
+form.NodesForm label {
+  color: #222222;
+  font-weight: bold;
+  font-size: 95%;
+  display: block;
+  margin: 0;
+  line-height: 150%;
+  padding: 0 0 3px;
+}

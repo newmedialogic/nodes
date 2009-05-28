@@ -3,15 +3,23 @@ class NodesGenerator < Rails::Generator::Base
   def manifest
     record do |m|
       create_tinymce_files(m)
+      create_nodes_css_files(m)
       create_nodes_javascript_files(m)
       m.migration_template 'create_node_abstracts.rb', "db/migrate", :migration_file_name => 'create_node_abstracts', :collision => :skip
     end
   end
 
+  def create_nodes_css_files(m)
+    m.directory "public/stylesheets/nodes"
+    m.file "nodes.css", "public/stylesheets/nodes/nodes.css"
+  end
+
+
   def create_nodes_javascript_files(m)
     m.directory "public/javascripts/nodes"
     m.file "nodes.js", "public/javascripts/nodes/nodes.js"
   end
+
 
   def create_tinymce_files(m)
     require 'find'

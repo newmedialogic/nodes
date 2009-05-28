@@ -22,9 +22,6 @@ load 'nodes/manages_nodes.rb'
 load 'nodes/provides.rb'
 
 
-ActionView::Helpers::AssetTagHelper.register_javascript_include_default 'tiny_mce/tiny_mce.js'
-ActionView::Helpers::AssetTagHelper.register_javascript_include_default 'nodes/nodes.js'
-
 
 # As of early May 2009, the default behaviors for Rails Engines
 # is to initialize plugin routes BEFORE application routes, which is not the
