@@ -17,6 +17,7 @@ module Nodes
 
         def instantiate_node
           instance_variable_set("@#{instance_variable_name.singularize}", current_node)
+          instance_variable_set("@node", current_node)
         end
 
 

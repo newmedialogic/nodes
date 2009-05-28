@@ -22,7 +22,9 @@ class NodesController < ApplicationController
 
       if template = template_for_path(path)
         return render_static_path(template)
-      elsif @node = node_for_path(path)
+      elsif @node = node_for_path(path) and is_edit_request?
+        return handle_edit_request
+      elsif @node
         return render_node
       else
         raise ActiveRecord::RecordNotFound
@@ -35,18 +37,21 @@ class NodesController < ApplicationController
 
 private
 
-  def handle_node_management_request()
-    case params[:path].last
-    when 'new': return new
-    when 'edit': return edit
-    else
-      return index
-    end
+  def is_edit_request?()
+    return false if params[:path].empty? or params[:path].nil?
+    params[:path].last == "edit"
+  end
+
+
+  def handle_edit_request()
+    type = @node.class.name.downcase
+    redirect_to send("edit_#{type}_path", @node)
   end
 
 
   def node_for_path(path)
-    @abstract = NodeAbstract.find_by_path(path)
+    clean_path = path.gsub(/\/edit/, '')
+    @abstract = NodeAbstract.find_by_path(clean_path)
     return nil if @abstract.nil?
     return @abstract.node
   end
