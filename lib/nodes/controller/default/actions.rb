@@ -25,7 +25,11 @@ module Nodes
             redirect_to current_node and return
           else
             save_failed!
-            render :new and return
+            begin
+              render :new and return
+            rescue ActionView::MissingTemplate
+              render "nodes/new" and return
+            end
           end
         end
         
@@ -41,7 +45,10 @@ module Nodes
 
         # GET /things
         def index
+          @nodes = []
           render :index
+        rescue ActionView::MissingTemplate
+          render "nodes/index"
         end
 
 
@@ -64,7 +71,11 @@ module Nodes
             redirect_to current_node
           else
             save_failed!
-            render :edit
+            begin
+              render :edit
+            rescue ActionView::MissingTemplate
+              render "nodes/edit"
+            end
           end
         end
 
@@ -72,9 +83,9 @@ module Nodes
         def destroy
           instantiate_node
           if current_node.destroy
-            response_for :destroy
+            redirect_to :action => :index
           else
-            response_for :destroy_failed
+            redirect_to :action => :index
           end
         end
 

@@ -3,6 +3,8 @@ module Nodes
 
     def self.extended(base)
       base.helper_method(:current_node)
+      base.send(:helper, NodesHelper)
+      base.send(:helper, BlocksHelper)
     end
 
     def manages_nodes(options = {}, &block)
@@ -13,8 +15,6 @@ module Nodes
   private
   
     def add_helpers
-      helper NodesHelper
-      helper BlocksHelper
       helper_method(:current_node)
     end
 
