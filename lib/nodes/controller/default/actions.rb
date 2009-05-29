@@ -22,7 +22,7 @@ module Nodes
           current_node.attributes = object_parameters
           if current_node.save
             save_succeeded!
-            redirect_to current_node and return
+            redirect_to (current_node.path.blank?) ? current_node : "/#{current_node.path}" and return
           else
             save_failed!
             begin
@@ -68,7 +68,7 @@ module Nodes
 
           if current_node.save
             save_succeeded!
-            redirect_to current_node
+            redirect_to (current_node.path.blank?) ? current_node : "/#{current_node.path}" and return
           else
             save_failed!
             begin
