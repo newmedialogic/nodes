@@ -17,7 +17,7 @@ class NodesGenerator < Rails::Generator::Base
 
   def create_nodes_javascript_files(m)
     m.directory "public/javascripts/nodes"
-    m.file "nodes.js", "public/javascripts/nodes/nodes.js", :conflict => :force
+    m.file "nodes.js", "public/javascripts/nodes/nodes.js", :collision => :force
   end
 
 
