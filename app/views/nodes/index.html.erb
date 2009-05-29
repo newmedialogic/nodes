@@ -2,18 +2,20 @@
 <%= link_to 'New Page', new_page_path %>
 <hr/>
 <% if @nodes.size > 0 %>
-<table>
+<table style="width: 90%;">
   <thead>
     <th>Title</th>
     <th>URL</th>
     <th>Edit</th>
+    <th>Delete</th>
   </thead>
   <% @nodes.each do |node| %>
   <tbody>
     <tr>
       <td><%= node.node_title %></td>
       <td><%= link_to(node.node_abstract.path, node.node_abstract.path) %></td>
-      <td><%= link_to('Edit', node_edit_path(@node)) %></td>
+      <td><%= link_to('Edit', edit_page_path(node)) %></td>
+      <td><%= link_to('Delete', page_path(node), :method => :delete, :confirm => "Are you sure?") %></td>
     </tr>
   </tbody>
 <% end %>
