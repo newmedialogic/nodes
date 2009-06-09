@@ -2,6 +2,7 @@ class NodesGenerator < Rails::Generator::Base
 
   def manifest
     record do |m|
+      m.directory "app/pages"
       create_tinymce_files(m)
       create_nodes_css_files(m)
       create_nodes_javascript_files(m)
