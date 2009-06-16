@@ -7,7 +7,7 @@ module Nodes
         send :include, InstanceMethods
 
         register_node_type
-        add_model_associations
+        add_node_abstract_associations
         add_callbacks
       end
 
@@ -23,7 +23,7 @@ module Nodes
       end
 
 
-      def add_model_associations
+      def add_node_abstract_associations
         has_one :node_abstract, :as => :node, :dependent => :destroy
         accepts_nested_attributes_for :node_abstract
         delegate :path, :to => :node_abstract

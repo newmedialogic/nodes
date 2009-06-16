@@ -3,11 +3,11 @@
   <ul>
     <li>
       <%= n.label :title %>
-      <%= n.text_field :title %>
+      <%= n.text_field :node_title %>
     </li>
     <li>
       <%= n.label :body %>
-      <%= n.text_area :body, :class => 'nodesWYSIWYG' %>
+      <%= n.text_area :node_body, :class => 'nodesWYSIWYG' %>
     </li>
     <% n.fields_for(:node_abstract) do |na| %>
     <li>
