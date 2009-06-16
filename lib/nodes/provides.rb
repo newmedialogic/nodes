@@ -50,15 +50,23 @@ module Nodes
       end
 
 
+      def node_title_method
+        DEFAULT_NODE_TITLE_METHOD
+      end
+
+
       def node_title
-        title_method = (self.respond_to?(:node_title_method)) ? self.send(:node_title_method) : DEFAULT_NODE_TITLE_METHOD
-        self.send(title_method)
+        self.send(node_title_method)
+      end
+
+
+      def node_body_method
+        DEFAULT_NODE_BODY_METHOD
       end
 
 
       def node_body
-        body_method = self.respond_to?(:node_body_method) ? self.send(:node_body_method) : DEFAULT_NODE_BODY_METHOD
-        self.send(body_method)
+        self.send(node_body_method)
       end
 
       
