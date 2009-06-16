@@ -11,7 +11,7 @@ module Nodes
 
 
         def current_node
-          @current_node ||= current_model.find_by_id(params[:id])
+          @current_node ||= current_model.find_by_id(params[:id]) || current_model.find(:first, :include => "node_abstract", :conditions => ["node_abstracts.path = ?", "#{current_model_name.underscore.pluralize}/#{params[:id]}"])
         end
 
 
