@@ -8,8 +8,7 @@ class NodesController < ApplicationController
   
 
   def index
-    @node_type = node_type
-    @nodes = [] 
+    @nodes = NodeAbstract.all.collect(&:node)
     render 'index' and return
   end
 
@@ -44,7 +43,7 @@ private
 
 
   def handle_edit_request()
-    type = @node.class.name.downcase
+    type = @node.class.name.underscore
     redirect_to send("edit_#{type}_path", @node)
   end
 
