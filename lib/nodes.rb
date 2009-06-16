@@ -11,6 +11,7 @@ module Nodes
     @@node_classes ||= []
   end
 
+
   def self.node_classes=(node_classes)
     @@node_classes = node_classes
   end

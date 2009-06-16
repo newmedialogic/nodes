@@ -3,11 +3,17 @@ module Nodes
 
     module ClassMethods
 
+      def paperclip_available?
+        self.respond_to?(:has_attached_file)
+      end
+
+
       def provides_nodes(options = {}, &block)
         send :include, InstanceMethods
 
         register_node_type
         add_node_abstract_associations
+        add_paperclip_associations if paperclip_available?
         add_callbacks
       end
 
@@ -27,6 +33,12 @@ module Nodes
         has_one :node_abstract, :as => :node, :dependent => :destroy
         accepts_nested_attributes_for :node_abstract
         delegate :path, :to => :node_abstract
+      end
+
+
+      def add_paperclip_associations
+        has_many :node_images
+        has_many :node_attachments
       end
 
 

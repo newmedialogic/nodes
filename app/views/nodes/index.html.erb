@@ -13,7 +13,7 @@
   <tbody>
     <tr>
       <td><%= node.node_title %></td>
-      <td><%= link_to(node.node_abstract.path, node.node_abstract.path) %></td>
+      <td><%= link_to(node.node_abstract.path, "/#{node.node_abstract.path}") %></td>
       <td><%= link_to('Edit', edit_page_path(node)) %></td>
       <td><%= link_to('Delete', page_path(node), :method => :delete, :confirm => "Are you sure?") %></td>
     </tr>

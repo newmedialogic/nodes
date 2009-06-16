@@ -6,7 +6,9 @@ class NodesGenerator < Rails::Generator::Base
       create_tinymce_files(m)
       create_nodes_css_files(m)
       create_nodes_javascript_files(m)
-      m.migration_template 'create_node_abstracts.rb', "db/migrate", :migration_file_name => 'create_node_abstracts', :collision => :skip
+      m.migration_template 'create_node_abstracts.rb',   'db/migrate', :migration_file_name => 'create_node_abstracts', :collision => :skip
+      m.migration_template 'create_node_images.rb',      'db/migrate', :migration_file_name => 'create_node_images',    :collision => :skip
+      m.migration_template 'create_node_attachments.rb', 'db/migrate', :migration_file_name => 'create_node_attachments', :collision => :skip
     end
   end
 
