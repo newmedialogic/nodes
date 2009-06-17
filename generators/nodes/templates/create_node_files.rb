@@ -1,7 +1,7 @@
-class CreateNodeAttachments < ActiveRecord::Migration                                                                                       
+class CreateNodeFiles < ActiveRecord::Migration                                                                                       
 
   def self.up
-    create_table :node_attachments do |t|
+    create_table :node_files do |t|
 
       t.column :title,       :string
       t.column :description, :text
@@ -22,14 +22,14 @@ class CreateNodeAttachments < ActiveRecord::Migration
     end
 
 
-    add_index :node_attachments, :node_id
-    add_index :node_attachments, :type
-    add_index :node_attachments, [:node_type, :node_id]
+    add_index :node_files, :node_id
+    add_index :node_files, :type
+    add_index :node_files, [:node_type, :node_id]
 
   end
 
   def self.down
-    drop_table :node_attachments
+    drop_table :node_files
   end
 
 end

@@ -12,7 +12,7 @@ class NodesGenerator < Rails::Generator::Base
 
 
   def create_migrations(m)
-    m.migration_template 'create_node_attachments.rb', 'db/migrate', :migration_file_name => 'create_node_attachments'
+    m.migration_template 'create_node_files.rb', 'db/migrate', :migration_file_name => 'create_node_files'
     m.migration_template 'create_node_abstracts.rb',   'db/migrate', :migration_file_name => 'create_node_abstracts'
   end
 

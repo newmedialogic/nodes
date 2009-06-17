@@ -37,8 +37,8 @@ module Nodes
 
 
       def add_paperclip_associations
-        has_many :node_images
-        has_many :node_attachments
+        has_many :node_images,      :as => :node, :dependent => :nullify
+        has_many :node_attachments, :as => :node, :dependent => :nullify
       end
 
 
