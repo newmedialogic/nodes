@@ -1,5 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
 
+  map.resources :node_images
+  map.resources :node_attachments
   map.resources :nodes
     # We require that the :id parameter for this resource
     # begin with an integer. This allows the SEO route (see bottom)

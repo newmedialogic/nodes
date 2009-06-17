@@ -1,0 +1,7 @@
+- @title = "Edit Node Image"
+
+%ul.Menu.LocalMenu
+  %li= link_to "View this Node Image", node_image_path(@node_image)
+  %li= link_to "View all Node Images", node_images_path
+
+= render :partial => 'form'

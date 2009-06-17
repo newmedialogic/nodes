@@ -7,7 +7,7 @@ class CreateNodeFiles < ActiveRecord::Migration
       t.column :description, :text
 
       # Polymorphic associations support
-      t.column :node_id,   :integer, :null => false
+      t.column :node_id,   :integer
       t.column :node_type, :string
       
       # Single-Table Inheritance Support.

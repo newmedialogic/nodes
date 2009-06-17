@@ -12,6 +12,5 @@ class NodeImage < NodeFile
   belongs_to :node, :polymorphic => true
 
   has_attached_file(:file, DEFAULT_PAPERCLIP_OPTIONS) if respond_to?(:has_attached_file)
-  alias_attribute :file, :image
 
 end

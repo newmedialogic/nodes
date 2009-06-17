@@ -17,6 +17,9 @@ end
 gem 'thoughtbot-shoulda'
 require 'shoulda'
 
+gem 'thoughtbot-factory_girl'
+require 'factory_girl'
+
 ################################################################################
 # Application/Gem Plugin
 ################################################################################
