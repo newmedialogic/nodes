@@ -1,6 +1,7 @@
-class NodeImagesController < ApplicationController
-  
+class NodeAttachmentsController < ApplicationController
+
   before_filter :delegate_authorization
+
 
   def index
     @node_images = NodeImage.all
@@ -52,12 +53,11 @@ class NodeImagesController < ApplicationController
     redirect_to node_images_url
   end
 
-  
 private
 
   def delegate_authorization
-    if self.respond_to?(:authorized_for_node_images?, true)
-      return authorized_for_node_images?
+    if respond_to?(:authorized_for_node_attachments?, true)
+      authorized_for_node_attachments?
     end
   end
 

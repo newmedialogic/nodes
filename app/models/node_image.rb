@@ -2,7 +2,7 @@ class NodeImage < NodeFile
 
   DEFAULT_PAPERCLIP_OPTIONS = {
     :styles => {
-      :normal    => "500x500",
+      :large    => "500x500",
       :medium    => "300x300",
       :small     => "140x140",
       :tiny      => "60x60#"

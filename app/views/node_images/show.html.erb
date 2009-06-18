@@ -1,0 +1,9 @@
+<div class="NodeImagePreview">
+  <%= image_tag(@node_image.file.url(:medium)) %>
+</div>
+Insert Size:
+<ul class="NodeImageSizeLinks">
+  <% [:tiny, :small, :medium, :large, :original].each do |size| %>
+  <li><%= link_to(size.to_s.titleize, @node_image.file.url(size)) %></li>
+  <% end %>
+</ul>
