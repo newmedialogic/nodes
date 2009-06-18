@@ -1,3 +1,38 @@
+body.nodesDialog {
+  background: #ffffff;
+  padding: 12px;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 75%;
+}
+html > body { font-size: 12px; }
+
+p, li {
+  line-height: 1.5em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #262623;
+  font-family: Georgia, serif;
+}
+
+h1 {
+  font-size:1.5em;
+  line-height: 1em;
+  margin-top: 0;
+  margin-bottom: 1em; 
+}
+
+h2 {
+  font-size:1.1667em;
+  line-height: 1.286em;
+  margin-top: 1.929em;
+  margin-bottom: 0.643em;  
+}
+
+img { border-width: 0; }
+
+ul { margin: 0; padding: 0; }
+
 form.NodesForm ul {
   margin :0;
   padding: 0;

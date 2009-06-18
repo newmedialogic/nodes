@@ -1,9 +1,9 @@
 <%= link_to "Upload a New Image", new_node_image_url %>
 
-<h2>Browse Images</h2>
+<h2>Browse Thumbnails</h2>
 <ul class="NodeImageListing">
 <% @node_images.each do |node_image| %>
   <li id="NodeImage<%= node_image.id %>">
-    <%= link_to(image_tag(node_image.file.url(:tiny)), node_image_url(node_image)) %>
+  <%= link_to(image_tag(node_image.file.url(:tiny)), node_image_url(node_image), :title => node_image.title) %>
 <% end %>
 </ul>
