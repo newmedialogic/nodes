@@ -21,3 +21,20 @@ form.NodesForm label {
   line-height: 150%;
   padding: 0 0 3px;
 }
+
+.defaultSkin .mceIcon.nodeButton {
+  background: url("/images/icons.gif");
+  background-repeat: none;
+}
+
+.defaultSkin .mceIcon.nodeImageButton {
+  background-position: 0 0;
+}
+
+.defaultSkin .mceIcon.nodeLinkButton {
+  background-position: -20px 0;
+}
+
+.defaultSkin .mceIcon.nodeVideoButton {
+  background-position: -40px 0;
+}
