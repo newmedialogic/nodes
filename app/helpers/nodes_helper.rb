@@ -15,5 +15,13 @@ module NodesHelper
     stylesheet_link_tag('nodes/nodes_popup.css')
   end
 
+
+  def render_node(node)
+    render :partial => "#{node.class.name.tableize}/teaser", :locals => { :node => node }
+  rescue ActionView::MissingTemplate => e
+    render :text => e and return
+    render :partial => 'nodes/teaser', :locals => { :node => node }
+  end
+
 end
 

@@ -10,8 +10,8 @@ module Nodes
 
       def provides_nodes(options = {}, &block)
         send :include, InstanceMethods
+        send :extend,  ExtensionMethods
 
-        register_node_type
         add_node_abstract_associations
         add_paperclip_associations if paperclip_available?
         add_callbacks
@@ -19,16 +19,10 @@ module Nodes
 
 
       def provides_blocks(options = {}, &block)
-        Nodes.block_classes << self.class unless Nodes.node_classes.include?(self.class)
       end
 
     private
       
-    def register_node_type
-        Nodes.node_classes << self.class unless Nodes.node_classes.include?(self.class)
-      end
-
-
       def add_node_abstract_associations
         has_one :node_abstract, :as => :node, :dependent => :destroy
         accepts_nested_attributes_for :node_abstract
@@ -46,6 +40,14 @@ module Nodes
         validates_presence_of :node_abstract
         validates_associated  :node_abstract
         after_save :save_node_abstract
+      end
+
+    end
+
+    module ExtensionMethods
+
+      def node_type?
+        TRUE
       end
 
     end

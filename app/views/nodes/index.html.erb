@@ -1,5 +1,11 @@
-<h1>Current Content</h1>
-<%= link_to 'New Page', new_page_path %>
+<h1>All <%= @node_type %> Content</h1>
+<% unless @node_type.blank? %>
+  <%= link_to 'All Content', nodes_path %> |
+  <%= link_to "New #{@node_type}", self.send("new_#{@node_type.underscore}_path") %>
+<% end %>
+<% Nodes.node_classes.each do |type| %>
+<%= link_to "New #{type.name.titleize}", self.send("new_#{type.name.underscore}_path") %> |
+<% end %>
 <hr/>
 <% if @nodes.size > 0 %>
 <table style="width: 90%;">
@@ -14,8 +20,8 @@
     <tr>
       <td><%= node.node_title %></td>
       <td><%= link_to(node.node_abstract.path, "/#{node.node_abstract.path}") %></td>
-      <td><%= link_to('Edit', edit_page_path(node)) %></td>
-      <td><%= link_to('Delete', page_path(node), :method => :delete, :confirm => "Are you sure?") %></td>
+      <td><%= link_to('Edit', self.send("edit_#{node.class.name.underscore}_path", node)) %></td>
+      <td><%= link_to('Delete', self.send("#{node.class.name.underscore}_path", node), :method => :delete, :confirm => "Are you sure?") %></td>
     </tr>
   </tbody>
 <% end %>

@@ -8,12 +8,11 @@ module Nodes
   VERSION = "0.1.0"
 
   def self.node_classes
-    @@node_classes ||= []
-  end
-
-
-  def self.node_classes=(node_classes)
-    @@node_classes = node_classes
+    @@node_classes ||= begin
+      Dir.glob(RAILS_ROOT + '/app/models/*.rb').each { |file| require file }
+      models = Object.subclasses_of(ActiveRecord::Base)
+      models.select{ |m| m.respond_to?(:node_type?) }
+    end
   end
 
 end

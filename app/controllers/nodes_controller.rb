@@ -9,6 +9,7 @@ class NodesController < ApplicationController
 
   def index
     @nodes = NodeAbstract.all.collect(&:node)
+    @node_type = ""
     render 'index' and return
   end
 
@@ -24,7 +25,7 @@ class NodesController < ApplicationController
       elsif @node = node_for_path(path) and is_edit_request?
         return handle_edit_request
       elsif @node
-        return render_node
+        return render_node(@node)
       else
         raise ActiveRecord::RecordNotFound
       end
@@ -60,8 +61,8 @@ private
   # This method should be moved into a Mixin that's included into ActionController::Base
   # and ActionView::Base (copy the methods used by render() in both cases).
   #
-  def render_node
-    render :template => "#{@node.class.name.pluralize.downcase}/show"
+  def render_node(node)
+    render :template => "#{node.class.name.tableize}/show"
   rescue ActionView::MissingTemplate
     render :template => "nodes/show"
   end

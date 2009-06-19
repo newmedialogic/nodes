@@ -46,6 +46,7 @@ module Nodes
         # GET /things
         def index
           @nodes = current_model.all
+          @node_type = current_node_type
           render :index
         rescue ActionView::MissingTemplate
           render "nodes/index"

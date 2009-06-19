@@ -15,7 +15,9 @@ module Nodes
   private
   
     def add_helpers
-      helper_method(:current_node)
+      helper_method :current_node
+      helper_method :current_node_type
+      helper_method :current_model_name
     end
 
   end

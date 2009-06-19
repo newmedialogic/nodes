@@ -1,2 +1,14 @@
-<h1>New content</h1>
-<%= render :partial => 'nodes/form' %>
+<h1>New <%= @node_type %></h1>
+<%=
+  # There should be a cleaner way to do this. Because we're living
+  # within the world of the implementing model (and not the Nodes
+  # abstract type), we need to first attempt using the implementation
+  # model's view, and then fall back to trying the one in the 
+  # plugin.
+  #
+  begin
+    render :partial => 'form'
+  rescue ActionView::MissingTemplate
+    render :partial => 'nodes/form'
+  end
+%>
