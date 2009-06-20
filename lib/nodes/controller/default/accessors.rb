@@ -28,7 +28,7 @@ module Nodes
 
 
         def current_node_type
-          current_model_name.titleize
+          current_model_name
         end
 
 

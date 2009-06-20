@@ -1,10 +1,11 @@
-<h1>All <%= @node_type %> Content</h1>
+<h1>All <%= @node_type.titleize %> Content</h1>
 <% unless @node_type.blank? %>
   <%= link_to 'All Content', nodes_path %> |
-  <%= link_to "New #{@node_type}", self.send("new_#{@node_type.underscore}_path") %>
-<% end %>
-<% Nodes.node_classes.each do |type| %>
-<%= link_to "New #{type.name.titleize}", self.send("new_#{type.name.underscore}_path") %> |
+  <%= link_to "New #{@node_type.titleize}", self.send("new_#{@node_type.tableize.singularize}_path") %>
+<% else %>
+  <% Nodes.node_classes.each do |type| %>
+  <%= link_to "New #{type.name.titleize}", self.send("new_#{type.name.underscore}_path") %> |
+  <% end %>
 <% end %>
 <hr/>
 <% if @nodes.size > 0 %>
