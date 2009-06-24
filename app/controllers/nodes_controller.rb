@@ -1,5 +1,6 @@
 class NodesController < ApplicationController
 
+  before_filter :nodes_authorization
   before_filter :assemble_blocks
   helper :blocks
 
