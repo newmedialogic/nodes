@@ -25,6 +25,7 @@ tinyMCE.init({
   theme_advanced_buttons3: "indent,outdent,formatselect,code,cleanup",
   mode : "specific_textareas",
   editor_selector: /nodesWYSIWYG/,
+  extended_valid_elements: "style",
   width: "560"
 });
 
