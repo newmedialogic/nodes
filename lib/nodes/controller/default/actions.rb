@@ -24,6 +24,8 @@ module Nodes
             save_succeeded!
             redirect_to (current_node.path.blank?) ? current_node : "/#{current_node.path}" and return
           else
+            raise current_node.errors.full_messages.to_s
+            raise current_node.attributes.to_yaml
             save_failed!
             begin
               render :new and return
