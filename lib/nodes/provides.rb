@@ -59,11 +59,6 @@ module Nodes
       DEFAULT_NODE_BODY_METHOD  = :body
 
 
-      def after_initialize
-        self.build_node_abstract if self.node_abstract.nil?
-      end
-
-
       def node_title_method
         DEFAULT_NODE_TITLE_METHOD
       end
@@ -97,6 +92,7 @@ module Nodes
 
 
       def save_node_abstract
+        build_node_abstract if self.node_abstract.nil?
         update_node_abstract
         node_abstract.save
       end
