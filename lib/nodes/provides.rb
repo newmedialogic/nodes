@@ -37,6 +37,7 @@ module Nodes
 
 
       def add_callbacks
+        before_validation     :guarantee_node_abstract_present
         validates_presence_of :node_abstract
         validates_associated  :node_abstract
         after_save :save_node_abstract
@@ -95,6 +96,11 @@ module Nodes
         build_node_abstract if self.node_abstract.nil?
         update_node_abstract
         node_abstract.save
+      end
+
+
+      def guarantee_node_abstract_present
+        build_node_abstract if self.node_abstract.nil?
       end
 
     end
