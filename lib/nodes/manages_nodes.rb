@@ -3,13 +3,13 @@ module Nodes
 
     def self.extended(base)
       base.helper_method(:current_node)
-      base.send(:helper, :nodes)
-      base.send(:helper, :blocks)
-      base.send(:helper, :node_comments)
     end
 
     def manages_nodes(options = {}, &block)
       include Nodes::Controller::Base
+      helper :nodes
+      helper :blocks
+      helper :node_comments
       add_helpers
     end
 
