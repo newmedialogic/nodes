@@ -1,4 +1,14 @@
-<h3>Leave a Comment</h3>
-<% form_for(:node_comment) do |f| %>
-  <%= f.label :body, "This is a test label." %>
-<% end %>
+<div id="NodeCommentForm">
+  <h3>Leave a Comment</h3>
+  <% form_for(@node_comment ||= NodeComment.new) do |f| %>
+    <ul>
+      <li>
+        <%= f.label :comment, "Your Comment" %>
+        <%= f.text_area :comment %>
+      </li>
+      <li class="buttons">
+        <%= f.submit "Post Comment" %>
+      </li>
+    </ul>
+  <% end %>
+</div>

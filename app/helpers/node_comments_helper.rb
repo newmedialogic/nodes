@@ -1,7 +1,6 @@
 module NodeCommentsHelper
 
   def comments_and_form_for(node, options = {})
-    return "TEST8"
     capture do
       comments_for(node, options)
       if allow_posting_node_comments
