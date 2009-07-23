@@ -12,6 +12,7 @@ module Nodes
         send :include, InstanceMethods
         send :extend,  ExtensionMethods
 
+        add_comment_associations
         add_node_abstract_associations
         add_paperclip_associations if paperclip_available?
         add_callbacks
@@ -29,6 +30,9 @@ module Nodes
         delegate :path, :to => :node_abstract
       end
 
+      def add_comment_associations
+        has_many :node_comments,  :as => :node, :dependent => :nullify
+      end
 
       def add_paperclip_associations
         has_many :node_images,      :as => :node, :dependent => :nullify
