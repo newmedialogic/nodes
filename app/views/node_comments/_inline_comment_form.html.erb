@@ -1,12 +1,22 @@
 <div id="NodeCommentForm">
   <h3>Leave a Comment</h3>
-  <% form_for(@node_comment ||= NodeComment.new) do |f| %>
+  <% form_for(@node_comment) do |f| %>
     <ul>
       <li>
-        <%= f.label :comment, "Your Comment" %>
-        <%= f.text_area :comment %>
+        <%= f.label :name, "Your Name" %>
+        <%= f.text_field :author %>
+      </li>
+      <li>
+        <%= f.label :email, "Your Email" %>
+        <%= f.text_field :email %>
+      </li>  
+      <li>
+        <%= f.label :content, "Your Comment" %>
+        <%= f.text_area :content %>
       </li>
       <li class="buttons">
+        <%= f.hidden_field :node_id %>
+        <%= f.hidden_field :node_type %>
         <%= f.submit "Post Comment" %>
       </li>
     </ul>
