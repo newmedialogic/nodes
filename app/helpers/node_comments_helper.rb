@@ -1,10 +1,17 @@
 module NodeCommentsHelper
 
   def comments_and_form_for(node, options = {})
+
     capture do
-      comments_for(node, options)
-      if allow_posting_node_comments
-        comment_form_for(node, options)
+      content_tag(:div, :id => "NodeComments") do
+
+        html = comments_for(node, options)
+
+        html += if allow_posting_node_comments
+            comment_form_for(node, options)
+        end
+
+        html
       end
     end
   end

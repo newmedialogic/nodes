@@ -58,3 +58,46 @@ ul.NodeImageListing img {
 .defaultSkin .mceIcon.nodeVideoButton {
   background-position: -40px 0;
 }
+
+/* --------------------------------------------------------------------------*/
+/* ->> COMMENTS <<-----------------------------------------------------------*/
+/* --------------------------------------------------------------------------*/
+#NodeComments-List ol {
+  margin: 0 0 18px;
+  list-style-type: none;
+  list-style-position: outside;
+}
+
+#NodeComments-List ol li {
+  padding: 20px 0;
+  position: relative;
+  border-bottom: 1px solid #9E9E9E;
+  border-top: 1px solid #BFBFBF;
+}
+
+.NodeComment-Author,
+.NodeComment-Meta,
+.NodeComment-Content,
+.NodeComment-ReplyLink{
+  margin-left: 100px;
+  display: block;
+}
+
+.NodeComment-Author { 
+  font-weight: bold;
+}
+
+.NodeComment-Meta {
+  font-size: 11px;
+  padding: 10px 0 9px;
+  color: #666666;
+}
+
+#NodeComments-List img.avatar {
+  background: #171717;
+  border: 1px solid #282828;
+  float: left;
+  margin-left: -95px;
+  position: relative;
+}
+
