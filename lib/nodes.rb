@@ -18,7 +18,7 @@ module Nodes
 end
 
 
-ApplicationController.send(:helper, [:nodes, :node_comments])
+ActionController::Base.send(:helper, [:nodes, :node_comments])
 
 load 'nodes/manages_nodes.rb'
 load 'nodes/provides.rb'

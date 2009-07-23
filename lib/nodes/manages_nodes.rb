@@ -6,9 +6,7 @@ module Nodes
         
         include Nodes::Controller::Base
 
-        helper :nodes
         helper :blocks
-        helper :node_comments
 
         helper_method :current_node
         helper_method :current_node_type

@@ -9,12 +9,15 @@ class NodeCommentsController < ApplicationController
 
   def new
     @node_comment = NodeComment.new
+    @node_comment.user = current_user
+    @node_comment.author = current_user.name
+    @node_comment.email = current_user.email
   end
   
 
   def create
     @node_comment = NodeComment.new(params[:node_comment])
-    # raise @node_comment.to_yaml
+    @node_comment.user = current_user
    
     if @node_comment.save
       redirect_to @node_comment.node 
