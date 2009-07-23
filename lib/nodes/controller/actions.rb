@@ -46,6 +46,7 @@ module Nodes
         # GET /things
         def index
           @nodes = current_model.all
+          instance_variable_set("@#{instance_variable_name.pluralize.underscore}", @nodes)
           @node_type = current_node_type
           render :index
         rescue ActionView::MissingTemplate

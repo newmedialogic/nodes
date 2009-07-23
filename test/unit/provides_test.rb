@@ -5,8 +5,10 @@ class ProvidesTest < Test::Unit::TestCase
 
   context "NodeAbstract association" do
 
-    should "automatically instantiate a node_abstract" do
-      assert_not_nil Page.new.node_abstract
+    should "automatically instantiate a node_abstract before validating" do
+      p = Page.new
+      p.valid?
+      assert_not_nil p.node_abstract
     end
 
   end

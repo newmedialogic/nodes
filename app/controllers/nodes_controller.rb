@@ -63,6 +63,7 @@ private
   # and ActionView::Base (copy the methods used by render() in both cases).
   #
   def render_node(node)
+    instance_variable_set("@#{node.class.name.singularize.underscore}", node)
     render :template => "#{node.class.name.tableize}/show"
   rescue ActionView::MissingTemplate
     render :template => "nodes/show"

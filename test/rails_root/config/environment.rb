@@ -3,6 +3,7 @@ require File.join(File.dirname(__FILE__), 'boot')
 Rails::Initializer.run do |config|
 
 
+
   config.load_paths += Dir.glob(File.join(RAILS_ROOT, '..', '..', 'app', 'helpers'))
 
   config.load_paths += Dir.glob(File.join(RAILS_ROOT, 'vendor', 'gems', '*', 'lib'))

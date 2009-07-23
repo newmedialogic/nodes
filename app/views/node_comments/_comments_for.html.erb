@@ -1,0 +1,20 @@
+<div id="NodeComments-List">
+  <h3><%= @node.node_comments.size %> Comments</h3>
+  <ol>
+    <% @node.node_comments.each do |comment| %>
+    <li id="NodeComment<%= comment.id %>" class="NodeComment">
+      <div class="NodeComment-Author vcard">
+        <%= image_tag("http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(comment.email)}?s=80", :class => 'avatar') %>
+        <span class="name"><%= comment.author %></span>
+      </div>
+      <div class="NodeComment-Meta">Posted <%= comment.created_at.to_formatted_s(:long_ordinal) %></div>
+      <div class="NodeComment-Content">
+        <%= comment.content %>
+      </div>
+      <div class="NodeComment-ReplyLink">
+        <br/>
+      </div>
+    </li>
+    <% end %>
+  </ol>
+</div>

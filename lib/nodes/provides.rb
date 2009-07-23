@@ -37,6 +37,7 @@ module Nodes
 
 
       def add_callbacks
+        before_validation     :guarantee_node_abstract_present
         validates_presence_of :node_abstract
         validates_associated  :node_abstract
         after_save :save_node_abstract
@@ -57,11 +58,6 @@ module Nodes
 
       DEFAULT_NODE_TITLE_METHOD = :title
       DEFAULT_NODE_BODY_METHOD  = :body
-
-
-      def after_initialize
-        self.build_node_abstract if self.node_abstract.nil?
-      end
 
 
       def node_title_method
@@ -97,8 +93,14 @@ module Nodes
 
 
       def save_node_abstract
+        build_node_abstract if self.node_abstract.nil?
         update_node_abstract
         node_abstract.save
+      end
+
+
+      def guarantee_node_abstract_present
+        build_node_abstract if self.node_abstract.nil?
       end
 
     end

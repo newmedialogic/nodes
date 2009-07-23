@@ -18,6 +18,9 @@ module Nodes
 end
 
 
+ApplicationController.send(:helper, NodesHelper)
+ApplicationController.send(:helper, NodeCommentsHelper)
+
 load 'nodes/manages_nodes.rb'
 load 'nodes/provides.rb'
 
