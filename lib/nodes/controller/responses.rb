@@ -1,12 +1,10 @@
 module Nodes
   module Controller
-    module Default
-      module Responses
+    module Responses
 
-        def self.included(base)
-        end
-        
+      def self.included(base)
       end
+      
     end
   end
 end
