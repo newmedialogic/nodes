@@ -1,5 +1,6 @@
 <div id="NodeComments-List">
-  <h3><%= @node.node_comments.size %> Comments</h3>
+  <h3><%= pluralize(@node.node_comments.size, 'Comment') %></h3>
+  <% if @node.node_comments.size > 0 %>
   <ol>
     <% @node.node_comments.each do |comment| %>
     <li id="NodeComment<%= comment.id %>" class="NodeComment">
@@ -17,4 +18,5 @@
     </li>
     <% end %>
   </ol>
+  <% end %>
 </div>
