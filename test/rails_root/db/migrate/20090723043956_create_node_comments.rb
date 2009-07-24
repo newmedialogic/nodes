@@ -11,8 +11,15 @@ class CreateNodeComments < ActiveRecord::Migration
       t.column :user_id,   :integer
       t.column :user_type, :string
 
-      t.column :title,     :string
-      t.column :comment,   :text
+      t.column :author,    :string
+      t.column :email,     :string
+      t.column :subject,   :string
+      t.column :content,   :text
+
+      t.column :spam,      :boolean, :default => false, :null => false
+      t.column :spaminess, :float
+      t.column :flagged,   :boolean, :default => false, :null => false
+      t.column :signature, :string
 
       t.timestamps
     end

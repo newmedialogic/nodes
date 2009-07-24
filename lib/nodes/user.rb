@@ -1,6 +1,7 @@
 module Nodes::User
 
-  def self.included(base)
+  def nodes_wysiwyg_profile
+    raise Nodes::ConfigurationError, "Please implement nodes_wysiwyg_profile in your User class."
   end
 
 end

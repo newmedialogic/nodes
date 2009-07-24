@@ -56,6 +56,7 @@ module Nodes
       # GET /things/12/edit
       def edit
         instantiate_node
+        return unless node_is_editable?
         render :edit
       rescue ActionView::MissingTemplate
         render "nodes/edit"
@@ -65,6 +66,7 @@ module Nodes
       # PUT /things/12
       def update
         instantiate_node
+        return unless node_is_editable?
         current_node.attributes = object_parameters
 
         if current_node.save
@@ -83,6 +85,7 @@ module Nodes
       # DELETE /things/12
       def destroy
         instantiate_node
+        return unless node_is_editable?
         if current_node.destroy
           redirect_to :action => :index
         else

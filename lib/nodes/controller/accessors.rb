@@ -20,6 +20,18 @@ module Nodes
         instance_variable_set("@node_type", current_node_type)
       end
 
+      
+      def node_is_editable?
+        if current_node and current_node.respond_to?(:editable_by?)
+          if not current_node.editable_by?(nodes_user)
+            flash[:notice] = "You don't have permissions to edit this content."
+            redirect_to '/' and return false
+          end
+        end
+
+        return true
+      end
+
 
       def instance_variable_name
         controller_name

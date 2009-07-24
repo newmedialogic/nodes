@@ -4,19 +4,12 @@
 #
 module Nodes::Controller::Authorization
 
-  def self.included(base)
-    base.before_filter :prepare_node_user
-  end
-
-  def prepare_node_user
-    @node_user = NodeUser.new
-  end
-
   def nodes_user
-    if respond_to?(:current_user)
-      current_user
-    elsif respond_to?(:active_user)
-      active_user
+
+    if respond_to?(:current_user, true)
+      self.send(:current_user) || Nodes::AnonymousUser.new
+    elsif respond_to?(:active_user, true)
+      self.send(:active_user) || Nodes::AnonymousUser.new
     else
       raise Nodes::ConfigurationError.new("Please implement current_user or active_user in your controller, and make it return an object that represents a user.")
     end
