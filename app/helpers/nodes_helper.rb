@@ -1,6 +1,9 @@
 module NodesHelper
 
   def nodes_head
+    javascript_tag do
+      "var Nodes = { User: #{@node_user.to_json} };";
+    end +
     javascript_include_tag('tiny_mce/tiny_mce.js') +
     javascript_include_tag('nodes/nodes.js') +
     stylesheet_link_tag('nodes/nodes.css')
