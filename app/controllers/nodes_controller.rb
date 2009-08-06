@@ -51,7 +51,7 @@ private
 
 
   def node_for_path(path)
-    clean_path = path.gsub(/\/edit/, '')
+    clean_path = path.gsub(/\/edit$/, '')
     clean_path = "/" if clean_path.blank?
     @abstract = NodeAbstract.find_by_path(clean_path)
     return nil if @abstract.nil?
