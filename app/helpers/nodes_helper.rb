@@ -7,6 +7,8 @@ module NodesHelper
     javascript_include_tag('tiny_mce/tiny_mce.js') +
     javascript_include_tag('nodes/nodes.js') +
     stylesheet_link_tag('nodes/nodes.css')
+  rescue NameError => err 
+    raise Nodes::ConfigurationError, "Perhaps you forgot to include Nodes::Controller in ApplicationController? #{err.class.name} occurred: #{err.message}"
   end
 
 
@@ -25,6 +27,7 @@ module NodesHelper
     render :text => e and return
     render :partial => 'nodes/teaser', :locals => { :node => node }
   end
+
 
 end
 

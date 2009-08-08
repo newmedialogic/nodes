@@ -1,2 +1,4 @@
-class Nodes::ConfigurationError < RuntimeError
+module Nodes
+  class ConfigurationError < RuntimeError
+  end
 end
