@@ -8,7 +8,7 @@ module NodesHelper
     javascript_include_tag('nodes/nodes.js') +
     stylesheet_link_tag('nodes/nodes.css')
   rescue NameError => err 
-    raise Nodes::ConfigurationError, "Perhaps you forgot to include Nodes::Controller in ApplicationController? #{err.class.name} occurred: #{err.message}"
+    raise Nodes::ConfigurationError, "Perhaps you forgot to include Nodes::Controller in ApplicationController? or Nodes::User in your User class? #{err.class.name} occurred: #{err.message}"
   end
 
 
