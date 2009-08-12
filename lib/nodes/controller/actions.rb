@@ -21,9 +21,14 @@ module Nodes
         current_node.attributes = object_parameters
         if current_node.save
           save_succeeded!
-          redirect_to (current_node.path.blank?) ? current_node : "/#{current_node.path}" and return
+          if respond_to?(:after_create)
+            self.send(:after_create)
+          else
+            redirect_to (current_node.path.blank?) ? current_node : "/#{current_node.path}" and return
+          end
         else
           save_failed!
+
           begin
             render :new and return
           rescue ActionView::MissingTemplate
@@ -71,7 +76,12 @@ module Nodes
 
         if current_node.save
           save_succeeded!
-          redirect_to (current_node.path.blank?) ? current_node : "/#{current_node.path}" and return
+
+          if respond_to?(:after_update)
+            self.send(:after_update)
+          else
+            redirect_to (current_node.path.blank?) ? current_node : "/#{current_node.path}" and return
+          end
         else
           save_failed!
           begin
