@@ -13,7 +13,8 @@ tinyMCE.init({
   document_base_url: '/',
   relative_urls: false,
   theme : "advanced",
-  plugins : "-nodes",
+  media_strict: false,
+  plugins : "-nodes,flash,media",
   // content_css: "/stylesheets/application.css",
   theme_advanced_toolbar_location: "top",
   theme_advanced_statusbar_location: "bottom",
@@ -24,8 +25,14 @@ tinyMCE.init({
   theme_advanced_buttons2: "nodeImage,nodeLink,nodeVideo",
   theme_advanced_buttons3: "indent,outdent,formatselect,code,cleanup",
   mode : "specific_textareas",
+  auto_cleanup_word : true,
+  paste_auto_cleanup_on_paste : true,
+  flash_wmode : "transparent",
+  flash_quality : "high",
+  flash_menu : "false",  
+  remove_linebreaks : false,
   editor_selector: /nodesWYSIWYG/,
-  extended_valid_elements: "style",
+  extended_valid_elements: "style[type],object[width|height|classid|codebase],param[name|value],embed[src|type|width|height|flashvars|wmode]",
   width: "560"
 });
 
