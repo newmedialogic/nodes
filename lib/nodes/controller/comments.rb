@@ -7,9 +7,11 @@ module Nodes
         @node_comment = NodeComment.new(:node => @node)
 
         user = send(current_user_method)
-        @node_comment.user = user
-        @node_comment.author = user.send(user_name_method)
-        @node_comment.email = user.send(user_email_method)
+        unless user.nil?
+          @node_comment.user = user
+          @node_comment.author = user.send(user_name_method)
+          @node_comment.email = user.send(user_email_method)
+        end
       end
 
 
