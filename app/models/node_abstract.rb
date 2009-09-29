@@ -10,7 +10,7 @@ protected
 
   def generate_summary
     
-    return if self.conect.nil?
+    return if self.content.nil?
 
     # Short content needn't be split
     self.summary = self.content.dup  and return if self.content.length <= DEFAULT_SUMMARY_LENGTH
