@@ -80,7 +80,7 @@ module Nodes
           if respond_to?(:after_update)
             self.send(:after_update)
           else
-            redirect_to (current_node.path.blank?) ? current_node : "/#{current_node.path}" and return
+            redirect_to((current_node.path.blank?) ? @current_node : "/#{@current_node.path}") and return
           end
         else
           save_failed!
