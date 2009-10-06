@@ -28,7 +28,7 @@ class NodesController < ApplicationController
       elsif @node
         return render_node(@node)
       else
-        raise ActiveRecord::RecordNotFound
+        render :template => "node_abstracts/missing_node"
       end
 
       path_parts.pop
