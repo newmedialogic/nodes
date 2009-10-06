@@ -1,5 +1,16 @@
 module NodesHelper
 
+  def nodes_user
+    if respond_to?(:current_user, true)
+      controller.send(:current_user) || Nodes::AnonymousUser.new
+    elsif respond_to?(:active_user, true)
+      controller.send(:active_user) || Nodes::AnonymousUser.new
+    else
+      raise Nodes::ConfigurationError.new("Please implement current_user or active_user in your controller, and make it return an object that represents a user.")
+    end
+  end
+
+
   def nodes_head
     javascript_tag do
       "var Nodes = { User: { Profile: '#{nodes_user.nodes_wysiwyg_profile}'} };";

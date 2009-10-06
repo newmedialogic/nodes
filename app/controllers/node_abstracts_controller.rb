@@ -1,4 +1,4 @@
-class NodesController < ApplicationController
+class NodeAbstractsController < ApplicationController
 
   before_filter :nodes_authorization, :except => [:show]
   before_filter :assemble_blocks

@@ -1,7 +1,12 @@
 require File.dirname(__FILE__) + '/../../test_helper' 
 include NodesHelper
 
-class NodesHelperTest < ActionView::TestCase 
+
+def nodes_user
+  return User.new
+end
+
+class NodesHelperTest < ActionView::TestCase
 
   context "Nodes Head" do
 
