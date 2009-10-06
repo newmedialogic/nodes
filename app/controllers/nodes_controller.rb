@@ -28,7 +28,7 @@ class NodesController < ApplicationController
       elsif @node
         return render_node(@node)
       else
-        render :template => "node_abstracts/missing_node"
+        render :template => "node_abstracts/missing_node", :status => 404
       end
 
       path_parts.pop
