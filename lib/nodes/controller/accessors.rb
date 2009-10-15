@@ -6,6 +6,8 @@ module Nodes
 
       def build_node
         @current_node = current_model.new
+        @current_node.guarantee_node_abstract_present
+        @current_node
       end
 
 

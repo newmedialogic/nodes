@@ -1,4 +1,4 @@
-ActionController::Base.send(:helper, [:nodes, :node_comments])
+ActionController::Base.send(:helper, [:blocks, :nodes, :node_comments, :node_disqus])
 
 # Nodes adds a minimalist content management system atop any
 # Rails model.

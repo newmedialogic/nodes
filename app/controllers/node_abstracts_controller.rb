@@ -1,4 +1,4 @@
-class NodesController < ApplicationController
+class NodeAbstractsController < ApplicationController
 
   before_filter :nodes_authorization, :except => [:show]
   before_filter :assemble_blocks
@@ -32,7 +32,7 @@ class NodesController < ApplicationController
         end
         return render_node(@node)
       else
-        raise ActiveRecord::RecordNotFound
+        render :template => "node_abstracts/missing_node", :status => 404
       end
 
       path_parts.pop
@@ -55,7 +55,7 @@ private
 
 
   def node_for_path(path)
-    clean_path = path.gsub(/\/edit/, '')
+    clean_path = path.gsub(/\/edit$/, '')
     clean_path = "/" if clean_path.blank?
     @abstract = NodeAbstract.find_by_path(clean_path)
     return nil if @abstract.nil?

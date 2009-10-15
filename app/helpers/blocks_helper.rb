@@ -2,7 +2,8 @@ module BlocksHelper
 
   BLOCKS = {
     :content_top => ['/mission_top'],
-    :inner_sidebar => ['/pio', '/principles']
+    :inner_sidebar => ['/pio', '/principles'],
+    :sidebar => ['/events', '/sidebar', '/donate']
   }
 
   def has_blocks_for?(name)

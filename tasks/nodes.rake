@@ -12,4 +12,17 @@ namespace :nodes do
       end
     end
   end
+
+  desc "Generate and save all summaries."
+  task :regen_summaries => :environment do
+    begin
+      NodeAbstract.all.each do |na|
+        na.send(:generate_summary)
+        na.save if na.changed?
+      end
+    rescue Exception => e
+      puts "Error occurred on #{na.title}. #{e.message}"
+    end
+  end
+
 end

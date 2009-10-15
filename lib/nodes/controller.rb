@@ -2,9 +2,7 @@ module Nodes::Controller
 
   def self.included(base)
     base.send(:include, Nodes::Controller::Authorization)
-
     base.helper [:blocks, :nodes, :node_comments]
-    base.helper_method :nodes_user
     base.extend(ClassMethods)
   end
 

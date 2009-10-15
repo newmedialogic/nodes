@@ -14,11 +14,11 @@ class NodesGenerator < Rails::Generator::Base
 
   def create_migrations(m)
     m.migration_template 'create_node_comments.rb',  'db/migrate', :migration_file_name => 'create_node_comments' 
-    sleep 1
+    m.sleep 1
     m.migration_template 'create_node_files.rb',     'db/migrate', :migration_file_name => 'create_node_files'
-    sleep 1
+    m.sleep 1
     m.migration_template 'create_node_abstracts.rb', 'db/migrate', :migration_file_name => 'create_node_abstracts'
-    sleep 1
+    m.sleep 1
   end
 
 
