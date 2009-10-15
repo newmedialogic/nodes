@@ -83,6 +83,11 @@ module Nodes
         self.send(node_body_method)
       end
 
+
+      def accessible_to?(user)
+        return true
+      end
+
       
       def update_node_abstract
         self.node_abstract.title = self.node_title

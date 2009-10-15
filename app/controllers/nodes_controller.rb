@@ -26,6 +26,10 @@ class NodesController < ApplicationController
       elsif @node = node_for_path(path) and is_edit_request?
         return handle_edit_request
       elsif @node
+        if not @node.accessible_to?(nodes_user)
+          flash[:error] = "Permission denied"
+          redirect_to '/' and return
+        end
         return render_node(@node)
       else
         raise ActiveRecord::RecordNotFound
