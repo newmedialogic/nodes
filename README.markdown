@@ -1,4 +1,4 @@
-# Nodes - A Very, Very Beta CMS **Plugin** for Rails
+# New Media Logic Nodes - A Very, Very Beta CMS **Plugin** for Rails
 
 Nodes is an unobtrusive CMS plugin for Ruby on Rails. It seamlessly integrates
 with the models and routes of your existing application. In other words, Nodes
@@ -23,6 +23,6 @@ as they are finished.
 
 ## Installation instructions
 
-1. script/plugin install git://github.com/nmlogic/nodes.git
+1. script/plugin install git://github.com/newmedialogic/nodes.git
 1. include Nodes::User in the class that contains a user
 1. include Nodes::Controller inside your ApplicationController
