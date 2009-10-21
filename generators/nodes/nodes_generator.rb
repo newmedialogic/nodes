@@ -30,8 +30,8 @@ class NodesGenerator < Rails::Generator::Base
 
   def create_nodes_css_files(m)
     m.directory "public/stylesheets/nodes"
-    m.file "nodes.css", "public/stylesheets/nodes/nodes.css"
-    m.file "nodes_popup.css", "public/stylesheets/nodes/nodes_popup.css"
+    m.file "nodes.css", "public/stylesheets/nodes/nodes.css", :collision => :force
+    m.file "nodes_popup.css", "public/stylesheets/nodes/nodes_popup.css", :collision => :force
   end
 
 

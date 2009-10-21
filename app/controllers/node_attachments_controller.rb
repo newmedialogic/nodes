@@ -4,25 +4,26 @@ class NodeAttachmentsController < ApplicationController
 
 
   def index
-    @node_images = NodeImage.all
+    @node_attachments = NodeAttachment.all
   end
   
 
   def show
-    @node_image = NodeImage.find_by_id(params[:id])
+    @node_attachment = NodeAttachment.find_by_id(params[:id])
+    send_file(@node_attachment.file.path, :type => @node_attachment.file.content_type, :filename => @node_attachment.file.original_filename) and return
   end
   
 
   def new
-    @node_image = NodeImage.new
+    @node_attachment = NodeAttachment.new
   end
   
 
   def create
-    @node_image = NodeImage.new(params[:node_image])
-    if @node_image.save
+    @node_attachment = NodeAttachment.new(params[:node_attachment])
+    if @node_attachment.save
       flash[:message] = "Successfully created nodeimage."
-      redirect_to node_images_url
+      redirect_to node_attachments_url
     else
       render :action => 'new'
     end
@@ -30,16 +31,16 @@ class NodeAttachmentsController < ApplicationController
   
 
   def edit
-    @node_image = NodeImage.find(params[:id])
+    @node_attachment = NodeAttachment.find(params[:id])
   end
   
 
   def update
-    @node_image = NodeImage.find(params[:id])
-    @node_image.attributes = params[:node_image]
-    if @node_image.save
+    @node_attachment = NodeAttachment.find(params[:id])
+    @node_attachment.attributes = params[:node_attachment]
+    if @node_attachment.save
       flash[:message] = "Successfully updated nodeimage."
-      redirect_to node_images_url
+      redirect_to node_attachments_url
     else
       render :action => 'edit'
     end
@@ -47,10 +48,10 @@ class NodeAttachmentsController < ApplicationController
   
 
   def destroy
-    @node_image = NodeImage.find(params[:id])
-    @node_image.destroy
+    @node_attachment = NodeAttachment.find(params[:id])
+    @node_attachment.destroy
     flash[:message] = "Successfully destroyed nodeimage."
-    redirect_to node_images_url
+    redirect_to node_attachments_url
   end
 
 private
