@@ -13,12 +13,19 @@ class NodesGenerator < Rails::Generator::Base
 
 
   def create_migrations(m)
-    m.migration_template 'create_node_comments.rb',  'db/migrate', :migration_file_name => 'create_node_comments' 
+    create_migration m, 'create_node_vocabularies'
+    create_migration m, 'create_node_terms'
+    create_migration m, 'create_node_comments'
+    create_migration m, 'create_node_files'
+    create_migration m, 'create_node_abstracts'
+  end
+
+
+  def create_migration(m, name)
+    m.migration_template "#{name}.rb", 'db/migrate', :migration_file_name => name
     m.sleep 1
-    m.migration_template 'create_node_files.rb',     'db/migrate', :migration_file_name => 'create_node_files'
-    m.sleep 1
-    m.migration_template 'create_node_abstracts.rb', 'db/migrate', :migration_file_name => 'create_node_abstracts'
-    m.sleep 1
+  rescue Exception => e
+    puts e.message
   end
 
 
