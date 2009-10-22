@@ -22,7 +22,7 @@ tinyMCE.init({
   theme_advanced_disable : "cut,copy,help",
   theme_advanced_toolbar_align: "left",
   theme_advanced_buttons1: "bold,italic,underline,justifyleft,justifycenter,justifyright,bullist,numlist,link,unlink",
-  theme_advanced_buttons2: "nodeImage,nodeLink,nodeVideo",
+  theme_advanced_buttons2: "nodeImage,nodeAttachment", // ",nodeVideo",
   theme_advanced_buttons3: "indent,outdent,formatselect,code,cleanup",
   mode : "specific_textareas",
   auto_cleanup_word : true,
@@ -74,38 +74,52 @@ tinymce.create('tinymce.plugins.NodePlugin', {
       }); 
     });
 
-    ed.addCommand('openNodeLinkDialog', function() {
+    ed.addCommand('openNodeAttachmentDialog', function() {
       // internal image object like a flash placeholder
       if(ed.dom.getAttrib(ed.selection.getNode(), 'class').indexOf('mceitem') != -1)
         return
 
-      ed.windowManager.open({
-        file: '/node_links',
-        width: 480,
-        height: 385,
-        inline: 1
-      }, { 
-        plugin_url : url
-      }); 
+      if(ed.dom.getAttrib(ed.selection.getNode(), 'id').indexOf('NodeAttachment') != -1) {
+
+        var attachment_id = ed.dom.getAttrib(ed.selection.getNode(), 'id').replace(/\D+/, '');
+
+        ed.windowManager.open({
+          file: '/node_attachments/' + attachment_id + '/edit',
+          width: 480,
+          height: 385,
+          inline: 1
+        }, {
+          plugin_url : url
+        });
+      } else {
+        ed.windowManager.open({
+          file: '/node_attachments',
+          width: 480,
+          height: 385,
+          inline: 1
+        }, { 
+          plugin_url : url
+        }); 
+      }
     });
 
     // Register buttons
     ed.addButton('nodeImage', {
-      title:   'Node Image',
+      title:   'Insert Image',
       cmd:     'openNodeImageDialog',
       'class': 'nodeButton nodeImageButton' 
     });
 
     ed.addButton('nodeVideo', {
-      title:   'Node Video',
+      title:   'Embed Video',
       cmd:     'openNodeVideoDialog',
       'class': 'nodeButton nodeVideoButton'
     });
 
-    ed.addButton('nodeLink', {
-      title:   'Node Link',
-      cmd:     'openNodeLinkDialog',
-      'class': 'nodeButton nodeLinkButton'
+    ed.addButton('nodeAttachment', {
+      title:   'Insert Attachment',
+      cmd:     'openNodeAttachmentDialog',
+      'class': 'nodeButton nodeAttachmentButton'
     });
   },
 

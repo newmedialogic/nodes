@@ -1,0 +1,11 @@
+- form_for(@node_attachment, :html => { :class => 'NodesForm', :multipart => true }) do |f|
+  = f.error_messages
+  %ul
+    %li
+      = f.label :title
+      = f.text_field :title
+    %li
+      = f.label :file
+      = f.file_field :file
+    %li.Buttons
+      = f.submit "Submit"

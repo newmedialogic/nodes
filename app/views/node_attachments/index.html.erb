@@ -1,9 +1,8 @@
-<%= link_to "Upload a New Attachment", new_attachment_image_url %>
+<%= link_to "Upload a New Attachment", new_node_attachment_url %>
 
 <h2>Browse Attachments</h2>
-<ul class="NodeAttachmentListing">
+<ul class="NodeAttachments">
 <% @node_attachments.each do |node_attachment| %>
-  <li id="NodeImage<%= node_attachment.id %>">
-    <%= link_to(image_tag(node_image.file.url(:tiny)), node_image_url(node_image)) %>
+<li><%= link_to(node_attachment.title, node_attachment_url(node_attachment), :id => "NodeAttachment#{node_attachment.id}") %></li>
 <% end %>
 </ul>

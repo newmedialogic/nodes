@@ -10,7 +10,7 @@ module Nodes
         instantiate_node
         render :new
       rescue ActionView::MissingTemplate
-        render "nodes/new"
+        render "node_abstracts/new"
       end
 
 
@@ -32,7 +32,7 @@ module Nodes
           begin
             render :new and return
           rescue ActionView::MissingTemplate
-            render "nodes/new" and return
+            render "node_abstracts/new" and return
           end
         end
       end
@@ -43,7 +43,7 @@ module Nodes
         instantiate_node
         render :show
       rescue ActionView::MissingTemplate
-        render "nodes/show"
+        render "node_abstracts/show"
       end
 
 
@@ -54,7 +54,7 @@ module Nodes
         @node_type = current_node_type
         render :index
       rescue ActionView::MissingTemplate
-        render "nodes/index"
+        render "node_abstracts/index"
       end
 
 
@@ -64,7 +64,7 @@ module Nodes
         return unless node_is_editable?
         render :edit
       rescue ActionView::MissingTemplate
-        render "nodes/edit"
+        render "node_abstracts/edit"
       end
 
 
@@ -87,7 +87,7 @@ module Nodes
           begin
             render :edit
           rescue ActionView::MissingTemplate
-            render "nodes/edit"
+            render "node_abstracts/edit"
           end
         end
       end
