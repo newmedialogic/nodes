@@ -7,25 +7,8 @@ class NodesGenerator < Rails::Generator::Base
       create_images(m)
       create_nodes_css_files(m)
       create_nodes_javascript_files(m)
-      create_migrations(m)
+      m.migration_tempate 'nodes_migration.rb', 'db/migrate', :migration_file_name => 'nodes_migration'
     end
-  end
-
-
-  def create_migrations(m)
-    create_migration m, 'create_node_vocabularies'
-    create_migration m, 'create_node_terms'
-    create_migration m, 'create_node_comments'
-    create_migration m, 'create_node_files'
-    create_migration m, 'create_node_abstracts'
-  end
-
-
-  def create_migration(m, name)
-    m.migration_template "#{name}.rb", 'db/migrate', :migration_file_name => name
-    m.sleep 1
-  rescue Exception => e
-    puts e.message
   end
 
 
